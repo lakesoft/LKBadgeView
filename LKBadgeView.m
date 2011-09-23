@@ -8,21 +8,22 @@
 
 #import "LKBadgeView.h"
 
-#define LK_BADGE_VIEW_STANDARD_HEIGHT       18.0
 #define LK_BADGE_VIEW_MINUM_WIDTH           24.0
-#define LK_BADGE_VIEW_HORIZONTAL_PADDING    8.0
-#define LK_BADGE_VIEW_FONT_SIZE             14.0
+#define LK_BADGE_VIEW_HORIZONTAL_PADDING    6.0
 #define LK_BADGE_VIEW_TRUNCATED_SUFFIX      @"..."
 
 @interface LKBadgeView()
 @property (nonatomic, copy) NSString* displayinText;
+@property (nonatomic, assign) CGRect badgeFrame;
 @end
 
 @implementation LKBadgeView
 @synthesize text = text_;
 @synthesize textColor, badgeColor;
 @synthesize horizontalAlignment = horizontalAlignment_;
+@synthesize widthMode = widthMode_;
 @synthesize displayinText;
+@synthesize badgeFrame = badgeFrame_;
 
 #pragma mark -
 #pragma mark Privates
@@ -33,12 +34,11 @@
     self.badgeColor = [UIColor grayColor];
     self.backgroundColor = [UIColor clearColor];
     self.horizontalAlignment = LKBadgeViewHorizontalAlignmentCenter;
+    self.widthMode = LKBadgeViewWidthModeStandard;
 
     self.text = nil;
     self.displayinText = nil;
 
-    //TODO
-    self.text = @"CATSAN12345";
 }
 
 - (UIFont*)_font
@@ -46,7 +46,7 @@
     return [UIFont boldSystemFontOfSize:LK_BADGE_VIEW_FONT_SIZE];
 }
 
-- (void)_adjustBdgeFrameX
+- (void)_adjustBadgeFrameX
 {
     switch (self.horizontalAlignment) {
         case LKBadgeViewHorizontalAlignmentLeft:
@@ -65,32 +65,49 @@
 
 - (void)_adjustBadgeFrameWith
 {
-    CGSize csize = [LK_BADGE_VIEW_TRUNCATED_SUFFIX sizeWithFont:[self _font]];
+    CGSize suffixSize = [LK_BADGE_VIEW_TRUNCATED_SUFFIX sizeWithFont:[self _font]];
 
+    CGFloat paddinWidth = LK_BADGE_VIEW_HORIZONTAL_PADDING*2;
     CGSize size = [self.displayinText sizeWithFont:[self _font]];
-    badgeFrame_.size.width = size.width + LK_BADGE_VIEW_HORIZONTAL_PADDING*2;
-    if (badgeFrame_.size.width+csize.width > self.bounds.size.width) {
-        if ([self.displayinText length] > 1) {
-            self.displayinText = [self.displayinText substringToIndex:[self.displayinText length]-2];
-            [self _adjustBadgeFrameWith];
-        } else {
-            self.displayinText = nil;
+    badgeFrame_.size.width = size.width + paddinWidth;
+    
+    if (badgeFrame_.size.width > self.bounds.size.width) {
+
+        while (1) {
+            size = [self.displayinText sizeWithFont:[self _font]];
+            badgeFrame_.size.width = size.width + paddinWidth;
+            if (badgeFrame_.size.width+suffixSize.width > self.bounds.size.width) {
+                if ([self.displayinText length] > 1) {
+                    self.displayinText = [self.displayinText substringToIndex:[self.displayinText length]-2];
+                } else {
+                    self.displayinText = @" ";
+                    break;
+                }
+            } else {
+                self.displayinText = [self.displayinText stringByAppendingString:LK_BADGE_VIEW_TRUNCATED_SUFFIX];
+                badgeFrame_.size.width += suffixSize.width;
+                break;
+            }
         }
-    } else {
-        self.displayinText = [self.displayinText stringByAppendingString:LK_BADGE_VIEW_TRUNCATED_SUFFIX];
-        badgeFrame_.size.width += csize.width;
+    }
+    if (self.widthMode == LKBadgeViewWidthModeStandard) {
+        if (badgeFrame_.size.width < LK_BADGE_VIEw_STANDARD_WIDTH) {
+            badgeFrame_.size.width = LK_BADGE_VIEw_STANDARD_WIDTH;
+        }
     }
 }
 
-- (void)_adjustBdgeFrame
+- (void)_adjustBadgeFrame
 {
-    badgeFrame_.size.height = [LKBadgeView standardHeight];
+    badgeFrame_.size.height = LK_BADGE_VIEW_STANDARD_HEIGHT;
     if (self.displayinText == nil || [self.displayinText length] == 0) {
         badgeFrame_.size.width = LK_BADGE_VIEW_MINUM_WIDTH;
     } else {
         [self _adjustBadgeFrameWith];
     }
     badgeFrame_.origin.y = (self.bounds.size.height - badgeFrame_.size.height) / 2.0;
+    
+    [self _adjustBadgeFrameX];
 }
 
 #pragma mark -
@@ -126,11 +143,15 @@
     [super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark Overrides
+
 - (void)drawRect:(CGRect)rect
 {
-    // TODO
-    [[UIColor whiteColor] set];
-    UIRectFill(self.bounds);
+    if (self.displayinText == nil || [self.displayinText length] == 0) {
+        return;
+    }
 
     // draw badge
     UIBezierPath* outlinePath = [UIBezierPath bezierPath];
@@ -165,15 +186,18 @@
         [self.textColor setFill];
         CGSize size = [self.displayinText sizeWithFont:[self _font]];
         CGPoint p = CGPointMake(bp.x + (badgeFrame_.size.width - size.width)/2.0,
-                                bp.y);
+                                bp.y + (badgeFrame_.size.height - size.height)/2.0);
         [self.displayinText drawAtPoint:p withFont:[self _font]];
     }
     
 }
 
-// todo
-// setframeのオーバーライド
-// サイズ調整
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    [self _adjustBadgeFrame];
+}
+
 #pragma mark -
 #pragma mark Properties
 
@@ -185,23 +209,19 @@
     
     self.displayinText = text;
 
-    [self _adjustBdgeFrame];
-    [self _adjustBdgeFrameX];
+    [self _adjustBadgeFrame];
 }
 
 - (void)setHorizontalAlignment:(LKBadgeViewHorizontalAlignment)horizontalAlignment
 {
     horizontalAlignment_ = horizontalAlignment;
-    [self _adjustBdgeFrameX];    
+    [self _adjustBadgeFrameX];    
 }
 
-
-#pragma mark -
-#pragma mark API
-
-+ (CGFloat)standardHeight
+- (void)setWidthMode:(LKBadgeViewWidthMode)widthMode
 {
-    return LK_BADGE_VIEW_STANDARD_HEIGHT;
+    widthMode_ = widthMode;
+    [self _adjustBadgeFrameWith];
 }
 
 @end
