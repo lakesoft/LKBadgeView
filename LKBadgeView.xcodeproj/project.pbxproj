@@ -23,6 +23,7 @@
 		4CF9908C142C41580023334F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CF9908A142C41580023334F /* InfoPlist.strings */; };
 		4CF9908E142C41580023334F /* LKBadgeViewTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CF9908D142C41580023334F /* LKBadgeViewTests.h */; };
 		4CF99090142C41580023334F /* LKBadgeViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9908F142C41580023334F /* LKBadgeViewTests.m */; };
+		4CF9909C142C42270023334F /* LKBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9909B142C42270023334F /* LKBadgeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,22 +41,24 @@
 		4CF9905F142C41580023334F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4CF99061142C41580023334F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4CF99063142C41580023334F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		4CF99067142C41580023334F /* LKBadgeView-Info.plist */ = {isa = PBXFileReference; path = "LKBadgeView-Info.plist"; sourceTree = "<group>"; };
+		4CF99067142C41580023334F /* LKBadgeView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LKBadgeView-Info.plist"; sourceTree = "<group>"; };
 		4CF99069142C41580023334F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4CF9906B142C41580023334F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4CF9906D142C41580023334F /* LKBadgeView-Prefix.pch */ = {isa = PBXFileReference; path = "LKBadgeView-Prefix.pch"; sourceTree = "<group>"; };
-		4CF9906E142C41580023334F /* LKBadgeViewAppDelegate.h */ = {isa = PBXFileReference; path = LKBadgeViewAppDelegate.h; sourceTree = "<group>"; };
+		4CF9906D142C41580023334F /* LKBadgeView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LKBadgeView-Prefix.pch"; sourceTree = "<group>"; };
+		4CF9906E142C41580023334F /* LKBadgeViewAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKBadgeViewAppDelegate.h; sourceTree = "<group>"; };
 		4CF9906F142C41580023334F /* LKBadgeViewAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKBadgeViewAppDelegate.m; sourceTree = "<group>"; };
 		4CF99072142C41580023334F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		4CF99074142C41580023334F /* LKBadgeViewViewController.h */ = {isa = PBXFileReference; path = LKBadgeViewViewController.h; sourceTree = "<group>"; };
+		4CF99074142C41580023334F /* LKBadgeViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKBadgeViewViewController.h; sourceTree = "<group>"; };
 		4CF99075142C41580023334F /* LKBadgeViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKBadgeViewViewController.m; sourceTree = "<group>"; };
 		4CF99078142C41580023334F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LKBadgeViewViewController.xib; sourceTree = "<group>"; };
 		4CF9907F142C41580023334F /* LKBadgeViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LKBadgeViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CF99080142C41580023334F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		4CF99089142C41580023334F /* LKBadgeViewTests-Info.plist */ = {isa = PBXFileReference; path = "LKBadgeViewTests-Info.plist"; sourceTree = "<group>"; };
+		4CF99089142C41580023334F /* LKBadgeViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LKBadgeViewTests-Info.plist"; sourceTree = "<group>"; };
 		4CF9908B142C41580023334F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4CF9908D142C41580023334F /* LKBadgeViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LKBadgeViewTests.h; sourceTree = "<group>"; };
 		4CF9908F142C41580023334F /* LKBadgeViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKBadgeViewTests.m; sourceTree = "<group>"; };
+		4CF9909A142C42270023334F /* LKBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBadgeView.h; sourceTree = "<group>"; };
+		4CF9909B142C42270023334F /* LKBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBadgeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +89,8 @@
 		4CF99050142C41570023334F = {
 			isa = PBXGroup;
 			children = (
-				4CF99065142C41580023334F /* LKBadgeView */,
+				4CF99099142C41850023334F /* LKBadgeView */,
+				4CF99065142C41580023334F /* SampleApplication */,
 				4CF99087142C41580023334F /* LKBadgeViewTests */,
 				4CF9905E142C41580023334F /* Frameworks */,
 				4CF9905C142C41580023334F /* Products */,
@@ -113,7 +117,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4CF99065142C41580023334F /* LKBadgeView */ = {
+		4CF99065142C41580023334F /* SampleApplication */ = {
 			isa = PBXGroup;
 			children = (
 				4CF9906E142C41580023334F /* LKBadgeViewAppDelegate.h */,
@@ -124,7 +128,7 @@
 				4CF99077142C41580023334F /* LKBadgeViewViewController.xib */,
 				4CF99066142C41580023334F /* Supporting Files */,
 			);
-			path = LKBadgeView;
+			path = SampleApplication;
 			sourceTree = "<group>";
 		};
 		4CF99066142C41580023334F /* Supporting Files */ = {
@@ -155,6 +159,15 @@
 				4CF9908A142C41580023334F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4CF99099142C41850023334F /* LKBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				4CF9909A142C42270023334F /* LKBadgeView.h */,
+				4CF9909B142C42270023334F /* LKBadgeView.m */,
+			);
+			name = LKBadgeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +278,7 @@
 				4CF9906C142C41580023334F /* main.m in Sources */,
 				4CF99070142C41580023334F /* LKBadgeViewAppDelegate.m in Sources */,
 				4CF99076142C41580023334F /* LKBadgeViewViewController.m in Sources */,
+				4CF9909C142C42270023334F /* LKBadgeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,8 +383,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKBadgeView/LKBadgeView-Prefix.pch";
-				INFOPLIST_FILE = "LKBadgeView/LKBadgeView-Info.plist";
+				GCC_PREFIX_HEADER = "SampleApplication/LKBadgeView-Prefix.pch";
+				INFOPLIST_FILE = "SampleApplication/LKBadgeView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -380,8 +394,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKBadgeView/LKBadgeView-Prefix.pch";
-				INFOPLIST_FILE = "LKBadgeView/LKBadgeView-Info.plist";
+				GCC_PREFIX_HEADER = "SampleApplication/LKBadgeView-Prefix.pch";
+				INFOPLIST_FILE = "SampleApplication/LKBadgeView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
