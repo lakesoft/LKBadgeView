@@ -20,6 +20,9 @@
 @implementation LKBadgeView
 @synthesize text = text_;
 @synthesize textColor, badgeColor;
+@synthesize outlineColor;
+@synthesize outlineWidth = outlineWidth_;
+@synthesize outline = outline_;
 @synthesize horizontalAlignment = horizontalAlignment_;
 @synthesize widthMode = widthMode_;
 @synthesize displayinText;
@@ -28,17 +31,34 @@
 #pragma mark -
 #pragma mark Privates
 
-- (void)_setup
+- (void)_setupBasics
 {
-    self.textColor = [UIColor whiteColor];
-    self.badgeColor = [UIColor grayColor];
     self.backgroundColor = [UIColor clearColor];
     self.horizontalAlignment = LKBadgeViewHorizontalAlignmentCenter;
     self.widthMode = LKBadgeViewWidthModeStandard;
-
     self.text = nil;
     self.displayinText = nil;
+}
 
+- (void)_setupDefaultWithOutline
+{
+    self.textColor = [UIColor whiteColor];
+    self.badgeColor = [UIColor grayColor];
+    outline_ = NO;
+
+    [self _setupBasics];
+}
+
+- (void)_setupDefaultWithoutOutline
+{
+    self.textColor = [UIColor grayColor];
+    self.badgeColor = [UIColor whiteColor];
+    self.outlineColor = [UIColor colorWithWhite:0.65 alpha:1.0];
+
+    outline_ = YES;
+    outlineWidth_ = 3.0;
+
+    [self _setupBasics];
 }
 
 - (UIFont*)_font
@@ -48,9 +68,10 @@
 
 - (void)_adjustBadgeFrameX
 {
+    CGFloat realOutlineWith = outline_ ? outlineWidth_ : 0.0;
     switch (self.horizontalAlignment) {
         case LKBadgeViewHorizontalAlignmentLeft:
-            badgeFrame_.origin.x = 0;
+            badgeFrame_.origin.x = realOutlineWith;
             break;
             
         case LKBadgeViewHorizontalAlignmentCenter:
@@ -58,7 +79,7 @@
             break;
             
         case LKBadgeViewHorizontalAlignmentRight:
-            badgeFrame_.origin.x = self.bounds.size.width - badgeFrame_.size.width;
+            badgeFrame_.origin.x = self.bounds.size.width - badgeFrame_.size.width - realOutlineWith;
             break;
     }
 }
@@ -116,7 +137,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [self _setup];
+        [self _setupDefaultWithOutline];
     }
     return self;
 }
@@ -124,7 +145,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _setup];
+        [self _setupDefaultWithOutline];
     }
     return self;
 }
@@ -132,7 +153,7 @@
 - (id)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        [self _setup];
+        [self _setupDefaultWithOutline];
     }
     return self;
 }
@@ -140,6 +161,7 @@
     self.text = nil;
     self.textColor = nil;
     self.badgeColor = nil;
+    self.outlineColor = nil;
     [super dealloc];
 }
 
@@ -161,13 +183,15 @@
 
     CGPoint bp = badgeFrame_.origin;
     
-    CGPoint c1 = CGPointMake(bp.x + unit, bp.y + unit);
+    CGPoint c1 = CGPointMake(bp.x + unit, bp.y);
+    [outlinePath moveToPoint:c1];
+    c1.y +=unit;
     [outlinePath addArcWithCenter:c1
                            radius:unit
                        startAngle:3*M_PI/2 endAngle:M_PI/2
                         clockwise:NO];
     
-    [outlinePath addLineToPoint:CGPointMake(bp.x + size.width - c1.x,
+    [outlinePath addLineToPoint:CGPointMake(bp.x + size.width - unit,
                                             bp.y + size.height)];
 
     CGPoint c2 = CGPointMake(bp.x + size.width - unit, bp.y + unit);
@@ -176,11 +200,18 @@
                        startAngle:M_PI/2 endAngle:-M_PI/2
                         clockwise:NO];
     
-    [outlinePath addLineToPoint:CGPointMake(bp.x + c1.x, bp.y)];
+    [outlinePath addLineToPoint:CGPointMake(bp.x + unit, bp.y)];
 
-    [self.badgeColor set];
+    [self.badgeColor setFill];
+    [self.outlineColor setStroke];
+    [self.badgeColor setFill];
     [outlinePath fill];
-
+    
+    if (outline_) {
+        [outlinePath setLineWidth:outlineWidth_];
+        [outlinePath stroke];
+    }
+    
     // draw text
     if (self.text != nil || [self.text length] > 0) {
         [self.textColor setFill];
@@ -222,6 +253,19 @@
 {
     widthMode_ = widthMode;
     [self _adjustBadgeFrameWith];
+}
+
+- (void)setOutlineWidth:(CGFloat)outlineWidth
+{
+    outlineWidth_ = outlineWidth;
+    [self _adjustBadgeFrame];
+}
+
+#pragma mark -
+#pragma mark API
++ (CGFloat)badgeHeight
+{
+    return LK_BADGE_VIEW_STANDARD_HEIGHT;
 }
 
 @end

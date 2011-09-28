@@ -34,7 +34,12 @@ typedef enum {
 @property (nonatomic, copy) NSString* text;
 @property (nonatomic, retain) UIColor* textColor;
 @property (nonatomic, retain) UIColor* badgeColor;
+@property (nonatomic, retain) UIColor* outlineColor;
+@property (nonatomic, assign) CGFloat outlineWidth;
+@property (nonatomic, assign) BOOL outline;
 @property (nonatomic, assign) LKBadgeViewHorizontalAlignment horizontalAlignment;
 @property (nonatomic, assign) LKBadgeViewWidthMode widthMode;
+
++ (CGFloat)badgeHeight;
 
 @end

@@ -11,7 +11,7 @@
 @class LKBadgeView;
 @interface LKBadgeViewViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView;
+@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView01;
 @property (nonatomic, retain) IBOutlet LKBadgeView* badgeView11;
 @property (nonatomic, retain) IBOutlet LKBadgeView* badgeView12;
 @property (nonatomic, retain) IBOutlet LKBadgeView* badgeView13;
@@ -25,4 +25,8 @@
 @property (nonatomic, retain) IBOutlet LKBadgeView* badgeView32b;
 @property (nonatomic, retain) IBOutlet LKBadgeView* badgeView41;
 @property (nonatomic, retain) IBOutlet LKBadgeView* badgeView42;
+
+@property (nonatomic, retain) IBOutlet UISwitch* outlineSwitch;
+
+- (IBAction)changeOutlineSwitch:(id)sender;
 @end
