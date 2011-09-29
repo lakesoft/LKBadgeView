@@ -1,5 +1,5 @@
-Custom Number Keypad
-====================
+Custom Badge View
+=================
 
 LKBadgeView class draw text on round rect.
 
