@@ -1,7 +1,7 @@
 Custom Badge View
 =================
 
-LKBadgeView class draw text on round rect.
+LKBadgeView class draws text on round rect 'badge'.
 
 ![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/screenshot0.png)
 
