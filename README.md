@@ -44,7 +44,9 @@ left/center/right alignments are available.
 
 ### Minimum size
 Minimum size has 2 way mode.
+
 	@property (nonatomic, assign) LKBadgeViewWidthMode widthMode;
+
 ![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/0005.png)
 
 * LKBadgeViewWidthModeSmall: The badge shape becomes circle.
@@ -54,6 +56,7 @@ Minimum size has 2 way mode.
 
 ###Color
 Text color and badge color are variable.  
+
 	@property (nonatomic, retain) UIColor* textColor;
 	@property (nonatomic, retain) UIColor* badgeColor;
 
@@ -67,6 +70,7 @@ LKBadgeView can use outline.
 ![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/0007.png)
 
 the outline property should be YES when you use outline. If the property is no, then the outline does not be drawn. Outline has color property and width property.
+
 	@property (nonatomic, retain) UIColor* outlineColor;
 	@property (nonatomic, assign) CGFloat outlineWidth;
 	@property (nonatomic, assign) BOOL outline;
@@ -90,9 +94,11 @@ If text width is greater than LKBadgeView width, The text is truncated.
 
 ### Badge height
 The height of badge shape is fixed (20px). The value is avaliable as constant. Also class method +badgeHeight is avalible.
+
 	#define LK_BADGE_VIEW_STANDARD_HEIGHT       20.0
  	  :
 	 + (CGFloat)badgeHeight;
+
 LKBadgeView height should be same value or more. If LKBadgeView is greater than fixed size (20px), then the badge shape is placed at the center of vertical position in LKBadgeView. Usually the height of LKBadgeView itself is the same as the value and good
 
 
