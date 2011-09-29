@@ -5,7 +5,7 @@ LKBadgeView class draws text on round rect 'badge'.
 
 ![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/screenshot0.png)
 
-[*See japanese document](http://cocoadays.blogspot.com/2011/09/blog-post.html _blank_)
+[*See japanese document](http://cocoadays.blogspot.com/2011/09/blog-post.html "_blank_")
 
 Installation
 ------------
