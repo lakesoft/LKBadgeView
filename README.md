@@ -88,7 +88,7 @@ Etc
 ### Truncated
 If text width is greater than LKBadgeView width, The text is truncated.
 
-![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/0008.png)
+![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/0009.png)
 
 ( The background color is convenient description )
 
