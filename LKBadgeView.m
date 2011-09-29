@@ -179,6 +179,7 @@
     self.textColor = nil;
     self.badgeColor = nil;
     self.outlineColor = nil;
+    self.displayinText = nil;
     [super dealloc];
 }
 
