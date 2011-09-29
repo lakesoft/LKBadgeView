@@ -259,24 +259,34 @@
     self.displayinText = text;
 
     [self _adjustBadgeFrame];
+    [self setNeedsDisplay];
 }
 
 - (void)setHorizontalAlignment:(LKBadgeViewHorizontalAlignment)horizontalAlignment
 {
     horizontalAlignment_ = horizontalAlignment;
     [self _adjustBadgeFrameX];    
+    [self setNeedsDisplay];
 }
 
 - (void)setWidthMode:(LKBadgeViewWidthMode)widthMode
 {
     widthMode_ = widthMode;
     [self _adjustBadgeFrameWith];
+    [self setNeedsDisplay];
 }
 
 - (void)setOutlineWidth:(CGFloat)outlineWidth
 {
     outlineWidth_ = outlineWidth;
     [self _adjustBadgeFrame];
+    [self setNeedsDisplay];
+}
+
+- (void)setOutline:(BOOL)outline
+{
+    outline_ = outline;
+    [self setNeedsDisplay];
 }
 
 #pragma mark -

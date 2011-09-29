@@ -109,7 +109,7 @@
 
             badgeView.outlineWidth = 2.0;
 
-            [badgeView setNeedsDisplay];
+//            [badgeView setNeedsDisplay];
         }
     }
     self.badgeView41.textColor = [UIColor greenColor];
