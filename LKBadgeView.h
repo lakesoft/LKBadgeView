@@ -53,6 +53,9 @@ typedef enum {
 @property (nonatomic, assign) BOOL outline;
 @property (nonatomic, assign) LKBadgeViewHorizontalAlignment horizontalAlignment;
 @property (nonatomic, assign) LKBadgeViewWidthMode widthMode;
+@property (nonatomic, assign) BOOL shadow;
+@property (nonatomic, assign) BOOL shadowOfOutline;
+@property (nonatomic, assign) BOOL shadowOfText;
 
 + (CGFloat)badgeHeight;
 

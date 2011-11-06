@@ -117,4 +117,44 @@
     self.badgeView42.textColor = [UIColor whiteColor];
 }
 
+- (IBAction)changeShadowSwitch:(id)sender {
+
+    UISwitch* sw = (UISwitch*)sender;
+
+    for (UIView* view in self.view.subviews) {
+        if ([view isKindOfClass:[LKBadgeView class]]) {
+            LKBadgeView* badgeView = (LKBadgeView*)view;
+            badgeView.shadow = sw.on;
+        }
+    }
+    self.badgeView41.shadow = sw.on;
+    self.badgeView42.shadow = sw.on;
+}
+
+- (IBAction)changeShadowOutlineSwitch:(id)sender {
+    UISwitch* sw = (UISwitch*)sender;
+    
+    for (UIView* view in self.view.subviews) {
+        if ([view isKindOfClass:[LKBadgeView class]]) {
+            LKBadgeView* badgeView = (LKBadgeView*)view;
+            badgeView.shadowOfOutline = sw.on;
+        }
+    }
+    self.badgeView41.shadowOfOutline = sw.on;
+    self.badgeView42.shadowOfOutline = sw.on;
+}
+
+- (IBAction)changeShadowTextSwitch:(id)sender {
+    UISwitch* sw = (UISwitch*)sender;
+    
+    for (UIView* view in self.view.subviews) {
+        if ([view isKindOfClass:[LKBadgeView class]]) {
+            LKBadgeView* badgeView = (LKBadgeView*)view;
+            badgeView.shadowOfText = sw.on;
+        }
+    }
+    self.badgeView41.shadowOfText = sw.on;
+    self.badgeView42.shadowOfText = sw.on;
+}
+
 @end

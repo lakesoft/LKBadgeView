@@ -33,7 +33,8 @@
 
 @implementation LKBadgeView
 @synthesize text = text_;
-@synthesize textColor, badgeColor;
+@synthesize textColor = textColor_;
+@synthesize badgeColor = badgeColor_;
 @synthesize outlineColor;
 @synthesize outlineWidth = outlineWidth_;
 @synthesize outline = outline_;
@@ -41,6 +42,9 @@
 @synthesize widthMode = widthMode_;
 @synthesize displayinText;
 @synthesize badgeFrame = badgeFrame_;
+@synthesize shadow = shadow_;
+@synthesize shadowOfOutline = shadowOfOutline_;
+@synthesize shadowOfText = shadowOfText_;
 
 #pragma mark -
 #pragma mark Privates
@@ -52,6 +56,7 @@
     self.widthMode = LKBadgeViewWidthModeStandard;
     self.text = nil;
     self.displayinText = nil;
+    self.userInteractionEnabled = NO;
 }
 
 - (void)_setupDefaultWithoutOutline
@@ -192,7 +197,7 @@
     if (self.displayinText == nil || [self.displayinText length] == 0) {
         return;
     }
-
+    
     // draw badge
     UIBezierPath* outlinePath = [UIBezierPath bezierPath];
     
@@ -220,14 +225,34 @@
     
     [outlinePath addLineToPoint:CGPointMake(bp.x + unit, bp.y)];
 
-    [self.badgeColor setFill];
     [self.outlineColor setStroke];
     [self.badgeColor setFill];
-    [outlinePath fill];
-    
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorRef shadowColor = [[UIColor colorWithWhite:0.0 alpha:0.5] CGColor];
+    CGSize shadowOffset = CGSizeMake(1.0, 1.0);
+    CGFloat shadowBlur = 2.0;
+
+    if (self.shadow) {
+        CGContextSaveGState(context);
+        CGContextSetShadowWithColor(context, shadowOffset, shadowBlur, shadowColor);
+        [outlinePath fill];
+        CGContextRestoreGState(context);
+    } else {
+        [outlinePath fill];        
+    }
+
     if (outline_) {
         [outlinePath setLineWidth:outlineWidth_];
-        [outlinePath stroke];
+
+        if (self.shadowOfOutline) {
+            CGContextSaveGState(context);
+            CGContextSetShadowWithColor(context, shadowOffset, shadowBlur, shadowColor);
+            [outlinePath stroke];
+            CGContextRestoreGState(context);            
+        } else {
+            [outlinePath stroke];
+        }
     }
     
     // draw text
@@ -236,7 +261,15 @@
         CGSize size = [self.displayinText sizeWithFont:[self _font]];
         CGPoint p = CGPointMake(bp.x + (badgeFrame_.size.width - size.width)/2.0,
                                 bp.y + (badgeFrame_.size.height - size.height)/2.0);
-        [self.displayinText drawAtPoint:p withFont:[self _font]];
+
+        if (self.shadowOfText) {
+            CGContextSaveGState(context);
+            CGContextSetShadowWithColor(context, shadowOffset, shadowBlur, shadowColor);
+            [self.displayinText drawAtPoint:p withFont:[self _font]];
+            CGContextRestoreGState(context);            
+        } else {
+            [self.displayinText drawAtPoint:p withFont:[self _font]];
+        }
     }
     
 }
@@ -286,6 +319,42 @@
 - (void)setOutline:(BOOL)outline
 {
     outline_ = outline;
+    [self setNeedsDisplay];
+}
+
+- (void)setShadow:(BOOL)shadow
+{
+    shadow_ = shadow;
+    [self setNeedsDisplay];
+}
+
+- (void)setShadowOfOutline:(BOOL)shadowOfOutline
+{
+    shadowOfOutline_ = shadowOfOutline;
+    [self setNeedsDisplay];
+}
+
+- (void)setShadowOfText:(BOOL)shadowOfText
+{
+    shadowOfText_ = shadowOfText;
+    [self setNeedsDisplay];
+}
+
+- (void)setBadgeColor:(UIColor *)badgeColor
+{
+    [badgeColor retain];
+    [badgeColor_ release];
+    badgeColor_ = badgeColor;
+    
+    [self setNeedsDisplay];
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    [textColor retain];
+    [textColor_ release];
+    textColor_ = textColor;
+    
     [self setNeedsDisplay];
 }
 

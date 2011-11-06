@@ -29,4 +29,7 @@
 @property (nonatomic, retain) IBOutlet UISwitch* outlineSwitch;
 
 - (IBAction)changeOutlineSwitch:(id)sender;
+- (IBAction)changeShadowSwitch:(id)sender;
+- (IBAction)changeShadowOutlineSwitch:(id)sender;
+- (IBAction)changeShadowTextSwitch:(id)sender;
 @end

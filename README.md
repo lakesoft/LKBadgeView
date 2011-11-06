@@ -70,7 +70,7 @@ LKBadgeView can use outline.
 
 ![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/0007.png)
 
-the outline property should be YES when you use outline. If the property is no, then the outline does not be drawn. Outline has color property and width property.
+The outline property should be YES when you use outline. If the property is no, then the outline does not be drawn. Outline has color property and width property.
 
 	@property (nonatomic, retain) UIColor* outlineColor;
 	@property (nonatomic, assign) CGFloat outlineWidth;
@@ -82,6 +82,18 @@ You can use outline with badgeColor.
 
 ![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/0008.png)
 
+###Shadow
+LKBadgeView can draw a shadow.
+
+![](https://github.com/lakesoft/LKBadgeView/raw/master/Docs/0010.png)
+
+If the shadow property is YES, then the shadow of the badge is drawn. 'shadowOfOutline' is for outline shadow. 'shadowOfText' is for text shadow.
+
+	@property (nonatomic, retain) BOOL shadow;
+	@property (nonatomic, assign) BOOL shadowOfOutline;
+	@property (nonatomic, assign) BOOL shadowOfText;
+
+(Default) all shadow properties are NO.
 
 Etc
 ---
