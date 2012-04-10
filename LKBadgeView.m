@@ -40,9 +40,13 @@
 @synthesize outline = outline_;
 @synthesize horizontalAlignment = horizontalAlignment_;
 @synthesize widthMode = widthMode_;
+@synthesize heightMode = heightMode_;
 @synthesize displayinText;
 @synthesize badgeFrame = badgeFrame_;
 @synthesize shadow = shadow_;
+@synthesize shadowOffset = shadowOffset_;
+@synthesize shadowBlur = shadowBlur_;
+@synthesize shadowColor = shadowColor_;
 @synthesize shadowOfOutline = shadowOfOutline_;
 @synthesize shadowOfText = shadowOfText_;
 
@@ -54,9 +58,14 @@
     self.backgroundColor = [UIColor clearColor];
     self.horizontalAlignment = LKBadgeViewHorizontalAlignmentCenter;
     self.widthMode = LKBadgeViewWidthModeStandard;
+    self.heightMode = LKBadgeViewHeightModeStandard;
     self.text = nil;
     self.displayinText = nil;
     self.userInteractionEnabled = NO;
+    
+    self.shadowOffset = CGSizeMake(1.0, 1.0);
+    self.shadowBlur = 2.0;
+    self.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
 }
 
 - (void)_setupDefaultWithoutOutline
@@ -142,7 +151,8 @@
 
 - (void)_adjustBadgeFrame
 {
-    badgeFrame_.size.height = LK_BADGE_VIEW_STANDARD_HEIGHT;
+    badgeFrame_.size.height = [self badgeHeight];
+
     if (self.displayinText == nil || [self.displayinText length] == 0) {
         badgeFrame_.size.width = LK_BADGE_VIEW_MINUM_WIDTH;
     } else {
@@ -185,6 +195,8 @@
     self.badgeColor = nil;
     self.outlineColor = nil;
     self.displayinText = nil;
+    
+    self.shadowColor = nil;
     [super dealloc];
 }
 
@@ -229,13 +241,10 @@
     [self.badgeColor setFill];
 
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGColorRef shadowColor = [[UIColor colorWithWhite:0.0 alpha:0.5] CGColor];
-    CGSize shadowOffset = CGSizeMake(1.0, 1.0);
-    CGFloat shadowBlur = 2.0;
 
     if (self.shadow) {
         CGContextSaveGState(context);
-        CGContextSetShadowWithColor(context, shadowOffset, shadowBlur, shadowColor);
+        CGContextSetShadowWithColor(context, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
         [outlinePath fill];
         CGContextRestoreGState(context);
     } else {
@@ -247,7 +256,7 @@
 
         if (self.shadowOfOutline) {
             CGContextSaveGState(context);
-            CGContextSetShadowWithColor(context, shadowOffset, shadowBlur, shadowColor);
+            CGContextSetShadowWithColor(context, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
             [outlinePath stroke];
             CGContextRestoreGState(context);            
         } else {
@@ -264,7 +273,7 @@
 
         if (self.shadowOfText) {
             CGContextSaveGState(context);
-            CGContextSetShadowWithColor(context, shadowOffset, shadowBlur, shadowColor);
+            CGContextSetShadowWithColor(context, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
             [self.displayinText drawAtPoint:p withFont:[self _font]];
             CGContextRestoreGState(context);            
         } else {
@@ -359,10 +368,28 @@
 }
 
 #pragma mark -
-#pragma mark API
+#pragma mark API (@depricated)
+
 + (CGFloat)badgeHeight
 {
     return LK_BADGE_VIEW_STANDARD_HEIGHT;
 }
 
+- (CGFloat)badgeHeight
+{
+    CGFloat height;
+    switch (self.heightMode) {
+        case LKBadgeViewHeightModeStandard:
+            height = LK_BADGE_VIEW_STANDARD_HEIGHT;
+            break;
+            
+        case LKBadgeViewHeightModeLarge:
+            height = LK_BADGE_VIEW_LARGE_HEIGHT;
+            break;
+            
+        default:
+            break;
+    }
+    return height;
+}
 @end
