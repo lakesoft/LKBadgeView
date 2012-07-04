@@ -50,6 +50,7 @@
 @synthesize shadowColor = shadowColor_;
 @synthesize shadowOfOutline = shadowOfOutline_;
 @synthesize shadowOfText = shadowOfText_;
+@synthesize textOffset = textOffset_;
 
 #pragma mark -
 #pragma mark Privates
@@ -68,6 +69,7 @@
     self.shadowBlur = 2.0;
     self.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     self.font = [UIFont boldSystemFontOfSize:LK_BADGE_VIEW_FONT_SIZE];
+    self.textOffset = CGSizeMake(0.0, 0.0);
 }
 
 - (void)_setupDefaultWithoutOutline
@@ -266,8 +268,8 @@
     if (self.text != nil || [self.text length] > 0) {
         [self.textColor setFill];
         CGSize size = [self.displayinText sizeWithFont:self.font];
-        CGPoint p = CGPointMake(bp.x + (badgeFrame_.size.width - size.width)/2.0,
-                                bp.y + (badgeFrame_.size.height - size.height)/2.0);
+        CGPoint p = CGPointMake(bp.x + (badgeFrame_.size.width - size.width)/2.0 + textOffset_.width,
+                                bp.y + (badgeFrame_.size.height - size.height)/2.0 + textOffset_.height);
 
         if (self.shadowOfText) {
             CGContextSaveGState(context);
