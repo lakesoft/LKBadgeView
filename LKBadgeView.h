@@ -53,6 +53,7 @@ typedef enum {
 
 @property (nonatomic, copy) NSString* text;
 @property (nonatomic, retain) UIColor* textColor;
+@property (nonatomic, retain) UIFont* font;
 @property (nonatomic, retain) UIColor* badgeColor;
 @property (nonatomic, retain) UIColor* outlineColor;
 @property (nonatomic, assign) CGFloat outlineWidth;
@@ -66,6 +67,7 @@ typedef enum {
 @property (nonatomic, retain) UIColor* shadowColor;
 @property (nonatomic, assign) BOOL shadowOfOutline;
 @property (nonatomic, assign) BOOL shadowOfText;
+@property (nonatomic, assign) CGSize textOffset;
 
 + (CGFloat)badgeHeight; // @depricated
 - (CGFloat)badgeHeight;
