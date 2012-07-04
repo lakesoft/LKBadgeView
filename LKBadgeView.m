@@ -34,6 +34,7 @@
 @implementation LKBadgeView
 @synthesize text = text_;
 @synthesize textColor = textColor_;
+@synthesize font = font_;
 @synthesize badgeColor = badgeColor_;
 @synthesize outlineColor;
 @synthesize outlineWidth = outlineWidth_;
@@ -66,6 +67,7 @@
     self.shadowOffset = CGSizeMake(1.0, 1.0);
     self.shadowBlur = 2.0;
     self.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    self.font = [UIFont boldSystemFontOfSize:LK_BADGE_VIEW_FONT_SIZE];
 }
 
 - (void)_setupDefaultWithoutOutline
@@ -92,11 +94,6 @@
     [self _setupBasics];
 }
 
-- (UIFont*)_font
-{
-    return [UIFont boldSystemFontOfSize:LK_BADGE_VIEW_FONT_SIZE];
-}
-
 - (void)_adjustBadgeFrameX
 {
     CGFloat realOutlineWith = outline_ ? outlineWidth_ : 0.0;
@@ -117,16 +114,16 @@
 
 - (void)_adjustBadgeFrameWith
 {
-    CGSize suffixSize = [LK_BADGE_VIEW_TRUNCATED_SUFFIX sizeWithFont:[self _font]];
+    CGSize suffixSize = [LK_BADGE_VIEW_TRUNCATED_SUFFIX sizeWithFont:self.font];
 
     CGFloat paddinWidth = LK_BADGE_VIEW_HORIZONTAL_PADDING*2;
-    CGSize size = [self.displayinText sizeWithFont:[self _font]];
+    CGSize size = [self.displayinText sizeWithFont:self.font];
     badgeFrame_.size.width = size.width + paddinWidth;
     
     if (badgeFrame_.size.width > self.bounds.size.width) {
 
         while (1) {
-            size = [self.displayinText sizeWithFont:[self _font]];
+            size = [self.displayinText sizeWithFont:self.font];
             badgeFrame_.size.width = size.width + paddinWidth;
             if (badgeFrame_.size.width+suffixSize.width > self.bounds.size.width) {
                 if ([self.displayinText length] > 1) {
@@ -192,6 +189,7 @@
 - (void)dealloc {
     self.text = nil;
     self.textColor = nil;
+    self.font = nil;
     self.badgeColor = nil;
     self.outlineColor = nil;
     self.displayinText = nil;
@@ -267,17 +265,17 @@
     // draw text
     if (self.text != nil || [self.text length] > 0) {
         [self.textColor setFill];
-        CGSize size = [self.displayinText sizeWithFont:[self _font]];
+        CGSize size = [self.displayinText sizeWithFont:self.font];
         CGPoint p = CGPointMake(bp.x + (badgeFrame_.size.width - size.width)/2.0,
                                 bp.y + (badgeFrame_.size.height - size.height)/2.0);
 
         if (self.shadowOfText) {
             CGContextSaveGState(context);
             CGContextSetShadowWithColor(context, self.shadowOffset, self.shadowBlur, self.shadowColor.CGColor);
-            [self.displayinText drawAtPoint:p withFont:[self _font]];
+            [self.displayinText drawAtPoint:p withFont:self.font];
             CGContextRestoreGState(context);            
         } else {
-            [self.displayinText drawAtPoint:p withFont:[self _font]];
+            [self.displayinText drawAtPoint:p withFont:self.font];
         }
     }
     
@@ -364,6 +362,16 @@
     [textColor_ release];
     textColor_ = textColor;
     
+    [self setNeedsDisplay];
+}
+
+- (void)setFont:(UIFont *)font
+{
+    [font retain];
+    [font_ release];
+    font_ = font;
+    
+    [self _adjustBadgeFrame];
     [self setNeedsDisplay];
 }
 

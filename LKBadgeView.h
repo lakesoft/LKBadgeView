@@ -53,6 +53,7 @@ typedef enum {
 
 @property (nonatomic, copy) NSString* text;
 @property (nonatomic, retain) UIColor* textColor;
+@property (nonatomic, retain) UIFont* font;
 @property (nonatomic, retain) UIColor* badgeColor;
 @property (nonatomic, retain) UIColor* outlineColor;
 @property (nonatomic, assign) CGFloat outlineWidth;
