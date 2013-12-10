@@ -23,7 +23,7 @@
 #import "LKBadgeView.h"
 
 #define LK_BADGE_VIEW_MINUM_WIDTH           24.0
-#define LK_BADGE_VIEW_HORIZONTAL_PADDING    6.0
+#define LK_BADGE_VIEW_HORIZONTAL_PADDING    3.0
 #define LK_BADGE_VIEW_TRUNCATED_SUFFIX      @"..."
 
 @interface LKBadgeView()
@@ -40,8 +40,6 @@
 @synthesize outlineWidth = outlineWidth_;
 @synthesize outline = outline_;
 @synthesize horizontalAlignment = horizontalAlignment_;
-@synthesize widthMode = widthMode_;
-@synthesize heightMode = heightMode_;
 @synthesize displayinText;
 @synthesize badgeFrame = badgeFrame_;
 @synthesize shadow = shadow_;
@@ -59,8 +57,7 @@
 {
     self.backgroundColor = [UIColor clearColor];
     self.horizontalAlignment = LKBadgeViewHorizontalAlignmentCenter;
-    self.widthMode = LKBadgeViewWidthModeStandard;
-    self.heightMode = LKBadgeViewHeightModeStandard;
+    self.badgeSize = CGSizeMake(LK_BADGE_VIEw_STANDARD_WIDTH, LK_BADGE_VIEW_STANDARD_HEIGHT);
     self.text = nil;
     self.displayinText = nil;
     self.userInteractionEnabled = NO;
@@ -118,7 +115,7 @@
 {
     CGSize suffixSize = [LK_BADGE_VIEW_TRUNCATED_SUFFIX sizeWithFont:self.font];
 
-    CGFloat paddinWidth = LK_BADGE_VIEW_HORIZONTAL_PADDING*2;
+    CGFloat paddinWidth = suffixSize.width/2.0;
     CGSize size = [self.displayinText sizeWithFont:self.font];
     badgeFrame_.size.width = size.width + paddinWidth;
     
@@ -141,16 +138,14 @@
             }
         }
     }
-    if (self.widthMode == LKBadgeViewWidthModeStandard) {
-        if (badgeFrame_.size.width < LK_BADGE_VIEw_STANDARD_WIDTH) {
-            badgeFrame_.size.width = LK_BADGE_VIEw_STANDARD_WIDTH;
-        }
+    if (badgeFrame_.size.width < self.badgeSize.width) {
+        badgeFrame_.size.width = self.badgeSize.width;
     }
 }
 
 - (void)_adjustBadgeFrame
 {
-    badgeFrame_.size.height = [self badgeHeight];
+    badgeFrame_.size.height = self.badgeSize.height;
 
     if (self.displayinText == nil || [self.displayinText length] == 0) {
         badgeFrame_.size.width = LK_BADGE_VIEW_MINUM_WIDTH;
@@ -311,13 +306,6 @@
     [self setNeedsDisplay];
 }
 
-- (void)setWidthMode:(LKBadgeViewWidthMode)widthMode
-{
-    widthMode_ = widthMode;
-    [self _adjustBadgeFrameWith];
-    [self setNeedsDisplay];
-}
-
 - (void)setOutlineWidth:(CGFloat)outlineWidth
 {
     outlineWidth_ = outlineWidth;
@@ -377,29 +365,11 @@
     [self setNeedsDisplay];
 }
 
-#pragma mark -
-#pragma mark API (@depricated)
-
-+ (CGFloat)badgeHeight
+- (void)setBadgeSize:(CGSize)badgeSize
 {
-    return LK_BADGE_VIEW_STANDARD_HEIGHT;
+    _badgeSize = badgeSize;
+    [self _adjustBadgeFrame];
+    [self setNeedsDisplay];
 }
 
-- (CGFloat)badgeHeight
-{
-    CGFloat height;
-    switch (self.heightMode) {
-        case LKBadgeViewHeightModeStandard:
-            height = LK_BADGE_VIEW_STANDARD_HEIGHT;
-            break;
-            
-        case LKBadgeViewHeightModeLarge:
-            height = LK_BADGE_VIEW_LARGE_HEIGHT;
-            break;
-            
-        default:
-            break;
-    }
-    return height;
-}
 @end
