@@ -24,6 +24,7 @@
 		4CF9908E142C41580023334F /* LKBadgeViewTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 4CF9908D142C41580023334F /* LKBadgeViewTests.h */; };
 		4CF99090142C41580023334F /* LKBadgeViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9908F142C41580023334F /* LKBadgeViewTests.m */; };
 		4CF9909C142C42270023334F /* LKBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9909B142C42270023334F /* LKBadgeView.m */; };
+		CEF95668190797D0006C1233 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF95667190797D0006C1233 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		4CF9908F142C41580023334F /* LKBadgeViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKBadgeViewTests.m; sourceTree = "<group>"; };
 		4CF9909A142C42270023334F /* LKBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBadgeView.h; sourceTree = "<group>"; };
 		4CF9909B142C42270023334F /* LKBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBadgeView.m; sourceTree = "<group>"; };
+		CEF95667190797D0006C1233 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		4CF99050142C41570023334F = {
 			isa = PBXGroup;
 			children = (
+				CEF95667190797D0006C1233 /* Default-568h@2x.png */,
 				4CF99099142C41850023334F /* LKBadgeView */,
 				4CF99065142C41580023334F /* SampleApplication */,
 				4CF99087142C41580023334F /* LKBadgeViewTests */,
@@ -215,7 +218,8 @@
 		4CF99052142C41570023334F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 			};
 			buildConfigurationList = 4CF99055142C41570023334F /* Build configuration list for PBXProject "LKBadgeView" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -241,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CF9906A142C41580023334F /* InfoPlist.strings in Resources */,
+				CEF95668190797D0006C1233 /* Default-568h@2x.png in Resources */,
 				4CF99073142C41580023334F /* MainWindow.xib in Resources */,
 				4CF99079142C41580023334F /* LKBadgeViewViewController.xib in Resources */,
 			);
@@ -343,7 +348,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -359,6 +363,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -367,7 +372,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -385,8 +389,9 @@
 		4CF99094142C41580023334F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SampleApplication/LKBadgeView-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SampleApplication/LKBadgeView-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SampleApplication/LKBadgeView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -397,8 +402,9 @@
 		4CF99095142C41580023334F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SampleApplication/LKBadgeView-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SampleApplication/LKBadgeView-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "SampleApplication/LKBadgeView-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,12 +416,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LKBadgeView.app/LKBadgeView";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKBadgeView/LKBadgeView-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SampleApplication/LKBadgeView-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "LKBadgeViewTests/LKBadgeViewTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,12 +435,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/LKBadgeView.app/LKBadgeView";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKBadgeView/LKBadgeView-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/SampleApplication/LKBadgeView-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "LKBadgeViewTests/LKBadgeViewTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

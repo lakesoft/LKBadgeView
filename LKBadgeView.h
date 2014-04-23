@@ -52,10 +52,10 @@ typedef enum {
 @interface LKBadgeView : UIView
 
 @property (nonatomic, copy) NSString* text;
-@property (nonatomic, retain) UIColor* textColor;
-@property (nonatomic, retain) UIFont* font;
-@property (nonatomic, retain) UIColor* badgeColor;
-@property (nonatomic, retain) UIColor* outlineColor;
+@property (nonatomic, strong) UIColor* textColor;
+@property (nonatomic, strong) UIFont* font;
+@property (nonatomic, strong) UIColor* badgeColor;
+@property (nonatomic, strong) UIColor* outlineColor;
 @property (nonatomic, assign) CGFloat outlineWidth;
 @property (nonatomic, assign) BOOL outline;
 @property (nonatomic, assign) LKBadgeViewHorizontalAlignment horizontalAlignment;
@@ -64,7 +64,7 @@ typedef enum {
 @property (nonatomic, assign) BOOL shadow;
 @property (nonatomic, assign) CGSize shadowOffset;
 @property (nonatomic, assign) CGFloat shadowBlur;
-@property (nonatomic, retain) UIColor* shadowColor;
+@property (nonatomic, strong) UIColor* shadowColor;
 @property (nonatomic, assign) BOOL shadowOfOutline;
 @property (nonatomic, assign) BOOL shadowOfText;
 @property (nonatomic, assign) CGSize textOffset;

@@ -11,22 +11,22 @@
 @class LKBadgeView;
 @interface LKBadgeViewViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView01;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView11;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView12;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView13;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView14;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView21;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView22;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView23;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView31;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView31b;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView32;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView32b;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView41;
-@property (nonatomic, retain) IBOutlet LKBadgeView* badgeView42;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView01;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView11;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView12;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView13;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView14;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView21;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView22;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView23;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView31;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView31b;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView32;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView32b;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView41;
+@property (nonatomic, strong) IBOutlet LKBadgeView* badgeView42;
 
-@property (nonatomic, retain) IBOutlet UISwitch* outlineSwitch;
+@property (nonatomic, strong) IBOutlet UISwitch* outlineSwitch;
 
 - (IBAction)changeOutlineSwitch:(id)sender;
 - (IBAction)changeShadowSwitch:(id)sender;
