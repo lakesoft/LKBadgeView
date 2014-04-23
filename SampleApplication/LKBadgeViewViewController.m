@@ -28,9 +28,6 @@
 
 #pragma mark - View lifecycle
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (void)viewDidLoad
 {

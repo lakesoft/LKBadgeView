@@ -189,15 +189,8 @@
     return self;
 }
 - (void)dealloc {
-    self.text = nil;
-    self.textColor = nil;
-    self.font = nil;
     self.badgeColor = nil;
-    self.outlineColor = nil;
-    self.displayinText = nil;
     
-    self.shadowColor = nil;
-    [super dealloc];
 }
 
 
@@ -294,8 +287,6 @@
 
 - (void)setText:(NSString *)text
 {
-    [text retain];
-    [text_ release];
     text_ = text;
     
     self.displayinText = text;
@@ -351,8 +342,6 @@
 
 - (void)setBadgeColor:(UIColor *)badgeColor
 {
-    [badgeColor retain];
-    [badgeColor_ release];
     badgeColor_ = badgeColor;
     
     [self setNeedsDisplay];
@@ -360,8 +349,6 @@
 
 - (void)setTextColor:(UIColor *)textColor
 {
-    [textColor retain];
-    [textColor_ release];
     textColor_ = textColor;
     
     [self setNeedsDisplay];
@@ -369,8 +356,6 @@
 
 - (void)setFont:(UIFont *)font
 {
-    [font retain];
-    [font_ release];
     font_ = font;
     
     [self _adjustBadgeFrame];
