@@ -92,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF95667190797D0006C1233 /* Default-568h@2x.png */,
-				4CF99099142C41850023334F /* LKBadgeView */,
+				4CF99099142C41850023334F /* Classes */,
 				4CF99065142C41580023334F /* SampleApplication */,
 				4CF99087142C41580023334F /* LKBadgeViewTests */,
 				4CF9905E142C41580023334F /* Frameworks */,
@@ -164,13 +164,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4CF99099142C41850023334F /* LKBadgeView */ = {
+		4CF99099142C41850023334F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				4CF9909A142C42270023334F /* LKBadgeView.h */,
 				4CF9909B142C42270023334F /* LKBadgeView.m */,
 			);
-			name = LKBadgeView;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,7 +362,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -379,7 +379,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

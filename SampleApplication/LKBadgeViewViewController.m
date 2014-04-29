@@ -10,21 +10,6 @@
 #import "LKBadgeView.h"
 
 @implementation LKBadgeViewViewController
-@synthesize badgeView01;
-@synthesize badgeView11;
-@synthesize badgeView12;
-@synthesize badgeView13;
-@synthesize badgeView14;
-@synthesize badgeView21;
-@synthesize badgeView22;
-@synthesize badgeView23;
-@synthesize badgeView31;
-@synthesize badgeView32;
-@synthesize badgeView31b;
-@synthesize badgeView32b;
-@synthesize badgeView41;
-@synthesize badgeView42;
-@synthesize outlineSwitch;
 
 #pragma mark - View lifecycle
 
