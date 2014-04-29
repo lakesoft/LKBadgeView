@@ -10,10 +10,11 @@ LKBadgeView class draws text on round rect 'badge'.
 Installation
 ------------
 
-You should copy below files to your projects.
+The library is available through [CocoaPods](http://cocoapods.org), to install
+it simply add the following line to your Podfile:
 
- LKBadgeView.h
- LKBadgeView.m
+    pod "LKBadgeView", :git => 'https://github.com/lakesoft/LKBadgeView.git'
+
 
 
 Usage
